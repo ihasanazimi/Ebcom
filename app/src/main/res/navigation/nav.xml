@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/restaurantsListFragment">
+
+    <fragment
+        android:id="@+id/restaurantsDetailsFragment"
+        android:name="com.example.ebcom.ui.fragments.restaurants.details.RestaurantsDetailsFragment"
+        android:label="RestaurantsDetailsFragment"
+        tools:layout="@layout/fragment_restaurant_details" />
+
+    <fragment
+        android:id="@+id/restaurantsListFragment"
+        android:name="com.example.ebcom.ui.fragments.restaurants.list.RestaurantsListFragment"
+        android:label="RestaurantsListFragment"
+        tools:layout="@layout/fragment_restaurants_list" >
+        <action
+            android:id="@+id/action_restaurantsListFragment_to_restaurantsDetailsFragment"
+            app:destination="@id/restaurantsDetailsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+    </fragment>
+
+</navigation>

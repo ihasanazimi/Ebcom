@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToggleImageView">
+        <attr name="src_checked" format="reference" />
+        <attr name="src_unchecked" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_cornerSize" format="dimension|reference" />
+    </declare-styleable>
+
+</resources>
