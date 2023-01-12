@@ -24,7 +24,6 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        changeStatusBarColor(requireActivity().window,R.color.gray_dark)
         viewModel.getAllRestaurants()
         adapter = RestaurantAdapter(this)
     }

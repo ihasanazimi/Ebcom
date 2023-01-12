@@ -76,25 +76,25 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
     fun addToFavorite(restaurant : Restaurant){
         isDone.value = true
         repository.addToFavorite(restaurant)
-        update(restaurant)
+        updateOnLiveData(restaurant)
         isDone.value = false
     }
 
      fun updateFavorite(restaurant : Restaurant){
         isDone.value = true
          repository.updateFavorites(restaurant)
-         update(restaurant)
+         updateOnLiveData(restaurant)
          isDone.value = false
     }
 
     fun deleteFavorite(restaurant : Restaurant){
         isDone.value = true
         repository.deleteFromFavorites(restaurant)
-        update(restaurant)
+        updateOnLiveData(restaurant)
         isDone.value = false
     }
 
-    private fun update(restaurant: Restaurant) {
+    private fun updateOnLiveData(restaurant: Restaurant) {
         val temps = _restaurants.value?.restaurants?.toMutableList()
         val targetTemp = temps?.find { it.name == restaurant.name }
         val targetIndex = temps?.indexOf(targetTemp)

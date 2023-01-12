@@ -19,7 +19,9 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
     }
 
     override fun addAllRestaurants(list: RestaurantsObject) {
-        db.restaurantDao().insertRestaurantsObj(list)
+        list.restaurants.forEach{
+            db.restaurantDao().insertRestaurant(it)
+        }
     }
 
     override fun deleteFromFavorites(restaurant: Restaurant) {
