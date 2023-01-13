@@ -36,6 +36,7 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.recyclerView.adapter = adapter
 
         binding.btnSort.setOnClickListener {
@@ -116,9 +117,7 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
         viewModel.errorLiveData.observe(viewLifecycleOwner){
             if (it.isNotEmpty()) {
                 binding.progressBar.hide()
-                Snackbar.make(binding.root,it[0],Snackbar.LENGTH_INDEFINITE).setAction("try") {
-                    viewModel.getAllRestaurants()
-                }.show()
+                Snackbar.make(binding.root,it[0],Snackbar.LENGTH_INDEFINITE).setAction("try") { viewModel.getAllRestaurants() }.show()
             }
         }
 

@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    tools:src="@drawable/p3" />
+                    tools:src="@drawable/sample" />
 
                 <View
                     android:layout_width="match_parent"
