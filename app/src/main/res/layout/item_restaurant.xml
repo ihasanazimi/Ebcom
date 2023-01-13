@@ -195,40 +195,59 @@
 
             </FrameLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <FrameLayout
                 android:id="@+id/deliveryCostsContainer"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="12dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginStart="12dp"
+                        android:drawablePadding="@dimen/space_4"
+                        android:gravity="start|center_vertical"
+                        android:text="delivery Costs : "
+                        android:textColor="@color/gray_very_dark"
+                        android:textSize="@dimen/textSize_12"
+                        android:textStyle="normal"
+                        app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
+
+                    <TextView
+                        android:id="@+id/tv_deliveryCosts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical|start"
+                        android:gravity="start|center_vertical"
+                        android:text="@{data.sortingValues.deliveryCostsStr}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textSize_12"
+                        android:textStyle="bold"
+                        tools:text="150$" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|start"
-                    android:layout_marginStart="12dp"
-                    android:drawablePadding="@dimen/space_4"
-                    android:gravity="start|center_vertical"
-                    android:text="delivery Costs : "
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textColor="@color/gray_very_dark"
+                    android:text="Order"
                     android:textSize="@dimen/textSize_12"
                     android:textStyle="normal"
-                    app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
+                    android:paddingHorizontal="@dimen/space_8"
+                    android:layout_gravity="end|center_vertical"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-                <TextView
-                    android:id="@+id/tv_deliveryCosts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|start"
-                    android:gravity="start|center_vertical"
-                    android:text="@{data.sortingValues.deliveryCostsStr}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textSize_12"
-                    android:textStyle="bold"
-                    tools:text="150$" />
+            </FrameLayout>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </LinearLayout>
 

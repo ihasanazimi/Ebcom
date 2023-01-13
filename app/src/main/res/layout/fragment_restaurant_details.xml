@@ -247,6 +247,146 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/space_8"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="12dp"
+                android:drawablePadding="@dimen/space_4"
+                android:gravity="start|center_vertical"
+                android:text="average product price : "
+                android:textColor="@color/gray_very_dark"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_baseline_attach_money_24" />
+
+            <TextView
+                android:id="@+id/tv_averageProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="start|center_vertical"
+                android:text="@{data.sortingValues.averageProductPrice()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="bold"
+                tools:text="150$" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/space_8"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="12dp"
+                android:drawablePadding="@dimen/space_4"
+                android:gravity="start|center_vertical"
+                android:text="min cost : "
+                android:textColor="@color/gray_very_dark"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_baseline_attach_money_24" />
+
+            <TextView
+                android:id="@+id/tv_minCost"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="start|center_vertical"
+                android:text="@{data.sortingValues.minCost()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="bold"
+                tools:text="150$" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/space_8"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="12dp"
+                android:drawablePadding="@dimen/space_4"
+                android:gravity="start|center_vertical"
+                android:text="newest : "
+                android:textColor="@color/gray_very_dark"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_outline_new_releases_24" />
+
+            <TextView
+                android:id="@+id/tv_newest"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="start|center_vertical"
+                android:text="@{data.sortingValues.newest()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="bold"
+                tools:text="150$" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/space_8"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="12dp"
+                android:drawablePadding="@dimen/space_4"
+                android:gravity="start|center_vertical"
+                android:text="bestMatch : "
+                android:textColor="@color/gray_very_dark"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_outline_emoji_emotions_24" />
+
+            <TextView
+                android:id="@+id/tv_bestMatch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="start|center_vertical"
+                android:text="@{data.sortingValues.bestMatch()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_12"
+                android:textStyle="bold"
+                tools:text="150$" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
     </LinearLayout>
 
 </layout>

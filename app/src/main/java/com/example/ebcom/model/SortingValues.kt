@@ -29,5 +29,9 @@ data class SortingValues(
     fun ratingAverageFlt() = ratingAverage.toFloat()
     fun popularityStr() = "(${popularity.toInt()})"
     fun deliveryCostsStr() = "$deliveryCosts$"
+    fun newest() = "$newest"
+    fun bestMatch() = "${bestMatch.toInt()}"
+    fun minCost() = "$minCost"
+    fun averageProductPrice() = "$averageProductPrice$"
 
 }
