@@ -12,7 +12,7 @@ import retrofit2.http.GET
 interface ApiService {
 
 
-    @GET("096e53fd-31db-4150-a886-302ee005cbd0")
+    @GET("46e93a3c-1d61-432e-8e70-da2f5f79353a")
     suspend fun getRestaurant() : RestaurantsObject
 
 
@@ -34,7 +34,7 @@ private val client = OkHttpClient.Builder()
     .addInterceptor(Interceptor {
         val oldRequest = it.request()
         val newRequestBuilder = oldRequest.newBuilder()
-        newRequestBuilder.addHeader("x-token" , "ebcom12345678910qwertyuioplkjhgfdsazxcvbnm")
+        newRequestBuilder.addHeader("x-token" , "ebcom")
         return@Interceptor it.proceed(newRequestBuilder.build())
     }).build()
 

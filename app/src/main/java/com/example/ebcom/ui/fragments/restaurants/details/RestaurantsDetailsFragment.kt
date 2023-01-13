@@ -35,6 +35,7 @@ class RestaurantsDetailsFragment: BaseFragment<FragmentRestaurantDetailsBinding,
         // update ui
         favoriteIconState(restaurant)
         restaurantOpenClosAheadUiState(restaurant)
+        loadRestaurantCover(restaurant)
 
         // favorite events
         binding.favoriteToggleBtn.addStateListener(object : ToggleImageView.OnStateChangedListener{
@@ -50,16 +51,15 @@ class RestaurantsDetailsFragment: BaseFragment<FragmentRestaurantDetailsBinding,
             }
         })
 
-        // load fake cover for restaurant (just for beautifully)
-        loadRestaurantCover()
-
     }
 
-    private fun loadRestaurantCover() {
+    private fun loadRestaurantCover(model: Restaurant) {
         Glide.with(binding.ivRestaurantCover.context)
-            .load(binding.ivRestaurantCover.context.getDrawable(R.drawable.p3))
+            .load(model.cover)
+            .timeout(30000)
+            .error(R.drawable.ic_baseline_error)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .placeholder(R.drawable.ic_baseline_downloading_24)
+            .placeholder(R.drawable.ic_place_holder)
             .into(binding.ivRestaurantCover)
     }
 

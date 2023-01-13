@@ -105,11 +105,12 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
             favoriteIconState(model)
             restaurantBackgroundColor(model)
 
-            // for beautifully
             Glide.with(binding.ivRestaurantCover.context)
-                .load(binding.ivRestaurantCover.context.getDrawable(R.drawable.p3))
+                .load(model.cover)
+                .timeout(30000)
+                .error(R.drawable.ic_baseline_error)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .placeholder(R.drawable.ic_baseline_downloading_24)
+                .placeholder(R.drawable.ic_place_holder)
                 .into(binding.ivRestaurantCover)
 
         }

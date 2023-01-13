@@ -14,7 +14,10 @@ import com.example.ebcom.ui.fragments.restaurants.RestaurantsVM
 import com.example.ebcom.ui.fragments.restaurants.details.RestaurantsDetailsFragment
 import com.example.ebcom.utility.base.BaseFragment
 import com.example.ebcom.utility.extentions.changeStatusBarColor
+import com.example.ebcom.utility.extentions.checkInternetConnection
 import com.example.ebcom.utility.extentions.hide
+import com.example.ebcom.utility.extentions.showToast
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -111,7 +114,12 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
         }
 
         viewModel.errorLiveData.observe(viewLifecycleOwner){
-            if (it.isNotEmpty()) binding.progressBar.hide()
+            if (it.isNotEmpty()) {
+                binding.progressBar.hide()
+                Snackbar.make(binding.root,it[0],Snackbar.LENGTH_INDEFINITE).setAction("try") {
+                    viewModel.getAllRestaurants()
+                }.show()
+            }
         }
 
     }

@@ -17,7 +17,7 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
     val isDone = MutableLiveData<Boolean>(false)
 
     private val handler = CoroutineExceptionHandler { _, exception ->
-        errorLiveData.postValue(arrayListOf(exception.message.toString()))
+        errorLiveData.postValue(arrayListOf("Failure to connect to the server..."))
     }
 
     fun addRestaurantsList(restaurants : RestaurantsObject){

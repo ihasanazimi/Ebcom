@@ -13,6 +13,8 @@ data class Restaurant(
     val name: String = "",
     @ColumnInfo(name = "status")
     val status: String = "",
+    @ColumnInfo(name = "cover")
+    val cover: String = "",
     @ColumnInfo(name = "sortingValues")
     val sortingValues: SortingValues ? = null,
     @ColumnInfo(name = "favorite")
