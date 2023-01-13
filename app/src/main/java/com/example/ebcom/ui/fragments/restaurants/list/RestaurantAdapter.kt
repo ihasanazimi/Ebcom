@@ -13,6 +13,8 @@ import com.example.ebcom.model.Restaurant
 import com.example.ebcom.model.seald.RestaurantOrderState
 import com.example.ebcom.utility.TDiffUtilCallback
 import com.example.ebcom.utility.customViews.ToggleImageView
+import com.example.ebcom.utility.extentions.hide
+import com.example.ebcom.utility.extentions.show
 import kotlin.random.Random
 
 class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adapter<RestaurantAdapter.PostViewHolder>() {
@@ -128,9 +130,18 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
 
         private fun statusTextColor(model: Restaurant) {
             when(model.status){
-                RestaurantOrderState.OPEN.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
-                RestaurantOrderState.CLOSED.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
-                RestaurantOrderState.AHEAD.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
+                RestaurantOrderState.OPEN.status -> {
+                    binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
+                    binding.closedIv.hide()
+                }
+                RestaurantOrderState.CLOSED.status -> {
+                    binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
+                    binding.closedIv.show()
+                }
+                RestaurantOrderState.AHEAD.status -> {
+                    binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
+                    binding.closedIv.hide()
+                }
                 else -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
             }
         }

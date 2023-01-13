@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.example.ebcom.model.Restaurant" />
@@ -13,9 +14,9 @@
         android:id="@+id/cardViewBg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/space_8"
         android:layout_marginHorizontal="@dimen/space_16"
         android:layout_marginVertical="@dimen/space_8"
+        app:cardCornerRadius="@dimen/space_8"
         app:cardElevation="0dp">
 
         <LinearLayout
@@ -23,17 +24,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_restaurant_cover"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/p3" />
+                android:layout_height="130dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_restaurant_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/p3" />
+
+                <ImageView
+                    android:id="@+id/closedIv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:background="@color/black_transparently"
+                    android:contentDescription="@string/this_is_test_description"
+                    android:src="@drawable/closed_img" />
+
+            </FrameLayout>
 
             <FrameLayout
-                android:paddingTop="@dimen/space_8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/space_8">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
@@ -64,6 +81,8 @@
                                 android:id="@+id/tv_restaurant_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_toStartOf="@id/tv_RestaurantOpenOrClosedState"
                                 android:gravity="center_vertical|start"
                                 android:maxLines="2"
                                 android:paddingHorizontal="@dimen/space_2"
@@ -71,57 +90,53 @@
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/textSize_14"
                                 android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_toStartOf="@id/tv_RestaurantOpenOrClosedState"
                                 tools:text="Restaurant Named" />
 
                             <TextView
                                 android:id="@+id/tv_RestaurantOpenOrClosedState"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="@dimen/space_8"
-                                android:text="@{data.statusByParenteral}"
-                                android:paddingHorizontal="@dimen/space_4"
                                 android:gravity="center"
-                                android:layout_alignParentEnd="true"
-                                android:textStyle="normal"
+                                android:paddingHorizontal="@dimen/space_4"
+                                android:text="@{data.statusByParenteral}"
                                 android:textSize="@dimen/textSize_12"
+                                android:textStyle="normal"
                                 tools:text="(Open)" />
 
                         </RelativeLayout>
 
 
-
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="wrap_content"
-                            android:paddingVertical="@dimen/space_4"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/space_4">
 
                             <RatingBar
                                 style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:isIndicator="true"
-                                android:focusable="false"
                                 android:clickable="false"
-                                android:theme="@style/RatingBar"
+                                android:focusable="false"
+                                android:isIndicator="true"
+                                android:numStars="5"
                                 android:rating="@{data.sortingValues.ratingAverageFlt}"
-                                android:numStars="5" />
+                                android:theme="@style/RatingBar" />
 
                             <TextView
                                 android:id="@+id/tv_popularityCount"
                                 android:layout_width="wrap_content"
-                                android:textSize="@dimen/textSize_14"
-                                android:textColor="@color/gray"
-                                tools:text="(4)"
-                                android:layout_marginStart="@dimen/space_4"
-                                android:text="@{data.sortingValues.popularityStr}"
-                                android:textStyle="normal"
-                                android:paddingHorizontal="@dimen/space_4"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"/>
-
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/space_4"
+                                android:paddingHorizontal="@dimen/space_4"
+                                android:text="@{data.sortingValues.popularityStr}"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/textSize_14"
+                                android:textStyle="normal"
+                                tools:text="(4)" />
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -130,21 +145,19 @@
                             android:id="@+id/tv_user_nike_name"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:paddingVertical="@dimen/space_2"
-                            android:gravity="center_vertical|start"
-                            android:singleLine="true"
                             android:drawablePadding="@dimen/space_4"
+                            android:gravity="center_vertical|start"
+                            android:paddingVertical="@dimen/space_2"
+                            android:singleLine="true"
                             android:text="@{data.sortingValues.distanceByKM}"
                             android:textSize="@dimen/textSize_12"
                             android:textStyle="normal"
-                            tools:text="Distance : 4KM"
-                            app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+                            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                            tools:text="Distance : 4KM" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
 
             </FrameLayout>
@@ -158,17 +171,17 @@
                     android:id="@+id/favoriteToggleBtn"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:padding="@dimen/space_8"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginHorizontal="@dimen/space_8"
                     android:checked="false"
+                    android:padding="@dimen/space_8"
                     app:src_checked="@drawable/ic_like_24"
                     app:src_unchecked="@drawable/ic_like_border_24" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -177,13 +190,13 @@
                         android:layout_gravity="center_vertical|start"
                         android:layout_marginStart="12dp"
                         android:layout_marginBottom="@dimen/space_4"
-                        android:textStyle="bold"
                         android:drawablePadding="@dimen/space_4"
                         android:gravity="start|center_vertical"
+                        android:text="delivery Costs : "
                         android:textColor="@color/gray"
                         android:textSize="@dimen/textSize_12"
-                        app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24"
-                        android:text="delivery Costs : " />
+                        android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
 
                     <TextView
                         android:id="@+id/tv_deliveryCosts"
@@ -191,11 +204,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical|start"
                         android:layout_marginBottom="@dimen/space_4"
-                        android:textStyle="bold"
-                        android:text="@{data.sortingValues.deliveryCostsStr}"
                         android:gravity="start|center_vertical"
+                        android:text="@{data.sortingValues.deliveryCostsStr}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/textSize_12"
+                        android:textStyle="bold"
                         tools:text="150$" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

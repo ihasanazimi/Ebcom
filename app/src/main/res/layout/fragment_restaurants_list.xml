@@ -5,6 +5,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -28,7 +29,7 @@
                         android:layout_gravity="start|center_vertical"
                         android:fontFamily="sans-serif-light"
                         android:paddingHorizontal="@dimen/space_8"
-                        android:text="EBCOM Restaurant"
+                        android:text="EBCOM Stores"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/textSize_18" />
                 </androidx.appcompat.widget.Toolbar>
@@ -36,50 +37,33 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/btn_sort"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/space_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/space_16"
                     android:layout_gravity="end|center_vertical"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/sortContainer"
+                    <TextView
+                        android:id="@+id/btn_sort_text"
+                        android:textSize="@dimen/textSize_12"
+                        android:textStyle="normal"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:text="bestMatch"
+                        android:layout_gravity="center_vertical"
+                        android:alpha="0.5"
+                        android:drawablePadding="@dimen/space_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        app:drawableStartCompat="@drawable/sort" />
 
-                        <TextView
-                            android:layout_gravity="start|center_vertical"
-                            android:textSize="@dimen/textSize_10"
-                            android:textStyle="normal"
-                            android:textColor="@color/gray_dark"
-                            android:gravity="center"
-                            android:text="Sorted By :"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/btn_sort_text"
-                            android:textSize="@dimen/textSize_10"
-                            android:textStyle="normal"
-                            android:textColor="@color/teal_200"
-                            android:gravity="center"
-                            android:text="bestMatch"
-                            android:alpha="0.5"
-                            android:drawablePadding="@dimen/space_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:drawableStartCompat="@drawable/sort" />
-
-
-                    </LinearLayout>
 
                     <ImageView
                         android:id="@+id/sortIv"
                         android:layout_width="wrap_content"
-                        android:padding="@dimen/space_4"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/space_4"
                         android:contentDescription="@string/this_is_test_description"
-                        android:src="@drawable/ic_baseline_more_vert_24"/>
+                        android:src="@drawable/ic_baseline_filter_list_24"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
