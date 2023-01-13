@@ -59,6 +59,8 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
             SortValues.MinCost.sortKey -> restaurants.restaurants.sortedWith(compareBy { it.sortingValues?.minCost })
             else-> { arrayListOf() }
         }
+
+        list.sortedByDescending { it.favorite }
         return RestaurantsObject(list)
     }
 

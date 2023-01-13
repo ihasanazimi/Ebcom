@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/bestMatch" android:title="bestMatch" android:checkable="true"/>
+<item android:id="@+id/newest" android:title="newest" android:checkable="true"/>
+<item android:id="@+id/ratingAverage" android:title="ratingAverage" android:checkable="true"/>
+<item android:id="@+id/distance" android:title="distance" android:checkable="true"/>
+<item android:id="@+id/popularity" android:title="popularity" android:checkable="true"/>
+<item android:id="@+id/averageProductPrice" android:title="averageProductPrice" android:checkable="true"/>
+<item android:id="@+id/deliveryCosts" android:title="deliveryCosts" android:checkable="true"/>
+<item android:id="@+id/minCost" android:title="minCost" android:checkable="true"/>
+</menu>
