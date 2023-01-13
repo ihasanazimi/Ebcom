@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.ebcom.R
 import com.example.ebcom.databinding.FragmentRestaurantDetailsBinding
 import com.example.ebcom.model.Restaurant
-import com.example.ebcom.model.seald.RestaurantOrderState
+import com.example.ebcom.model.seald.SealdRestaurantStatus
 import com.example.ebcom.ui.fragments.restaurants.RestaurantsVM
 import com.example.ebcom.utility.base.BaseFragment
 import com.example.ebcom.utility.customViews.ToggleImageView
@@ -65,7 +65,7 @@ class RestaurantsDetailsFragment: BaseFragment<FragmentRestaurantDetailsBinding,
 
     private fun restaurantOpenClosAheadUiState(model: Restaurant) {
         when(model.status){
-            RestaurantOrderState.OPEN.status -> {
+            SealdRestaurantStatus.OPEN.status -> {
                 binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
                 binding.closedIv.hide()
                 binding.deliveryCostsContainer.show()
@@ -75,7 +75,7 @@ class RestaurantsDetailsFragment: BaseFragment<FragmentRestaurantDetailsBinding,
                     text = requireContext().getString(R.string.open_message)
                 }
             }
-            RestaurantOrderState.CLOSED.status -> {
+            SealdRestaurantStatus.CLOSED.status -> {
                 binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
                 binding.closedIv.show()
                 binding.deliveryCostsContainer.hide()
@@ -85,7 +85,7 @@ class RestaurantsDetailsFragment: BaseFragment<FragmentRestaurantDetailsBinding,
                     text = requireContext().getString(R.string.close_message)
                 }
             }
-            RestaurantOrderState.AHEAD.status -> {
+            SealdRestaurantStatus.AHEAD.status -> {
                 binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray_very_dark))
                 binding.closedIv.hide()
                 binding.deliveryCostsContainer.show()

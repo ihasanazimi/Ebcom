@@ -2,11 +2,10 @@ package com.example.ebcom.repository.restaurant_datasource.remote
 
 import com.example.ebcom.model.Restaurant
 import com.example.ebcom.model.RestaurantsObject
-import com.example.ebcom.model.seald.RestaurantOrderState
-import com.example.ebcom.model.seald.SortValues
+import com.example.ebcom.model.seald.SealdRestaurantStatus
+import com.example.ebcom.model.seald.SealdSortValues
 import com.example.ebcom.repository.restaurant_datasource.RestaurantDataSource
 import com.example.ebcom.services.http.ApiService
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 class RestaurantRemoteDataSource(private val api: ApiService) : RestaurantDataSource {
 
@@ -44,64 +43,104 @@ class RestaurantRemoteDataSource(private val api: ApiService) : RestaurantDataSo
 
     override fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String): RestaurantsObject {
 
-        val favorites = restaurants.restaurants.filter { it.favorite == 1 } as ArrayList<Restaurant>
+        var favorites = restaurants.restaurants.filter { it.favorite == 1 } as ArrayList<Restaurant>
         val favoritesLessList = restaurants.restaurants.filter { it.favorite == 0 } as ArrayList<Restaurant>
-        val openedRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.OPEN.status } as ArrayList<Restaurant>
-        val closedRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.CLOSED.status } as ArrayList<Restaurant>
-        val aheadRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.AHEAD.status } as ArrayList<Restaurant>
+        val openedRestaurants = favoritesLessList.filter { it.status == SealdRestaurantStatus.OPEN.status } as ArrayList<Restaurant>
+        val closedRestaurants = favoritesLessList.filter { it.status == SealdRestaurantStatus.CLOSED.status } as ArrayList<Restaurant>
+        val aheadRestaurants = favoritesLessList.filter { it.status == SealdRestaurantStatus.AHEAD.status } as ArrayList<Restaurant>
 
         when (sortType) {
-            SortValues.BestMatch.sortKey -> {
+            SealdSortValues.BestMatch.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.bestMatch })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.bestMatch })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
             }
-            SortValues.NEWEST.sortKey -> {
+            SealdSortValues.NEWEST.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.newest })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.newest })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.newest })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.newest })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.newest })
             }
-            SortValues.RatingAverage.sortKey -> {
+            SealdSortValues.RatingAverage.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.ratingAverage })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.ratingAverage })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.ratingAverage })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.ratingAverage })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.ratingAverage })
             }
-            SortValues.Distance.sortKey -> {
+            SealdSortValues.Distance.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.distance })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.distance })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.distance })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.distance })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.distance })
             }
-            SortValues.POPULARITY.sortKey -> {
+            SealdSortValues.POPULARITY.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.popularity })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.popularity })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.popularity })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.popularity })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.popularity })
             }
-            SortValues.AverageProductPrice.sortKey -> {
+            SealdSortValues.AverageProductPrice.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.averageProductPrice })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.averageProductPrice })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.averageProductPrice })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.averageProductPrice })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.averageProductPrice })
             }
-            SortValues.DeliveryCosts.sortKey -> {
+            SealdSortValues.DeliveryCosts.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.deliveryCosts })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.deliveryCosts })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
                 aheadRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
             }
-            SortValues.MinCost.sortKey -> {
+            SealdSortValues.MinCost.sortKey -> {
                 favorites.sortWith(compareBy { it.sortingValues?.minCost })
+                val o = favorites.filter { it.status ==  SealdRestaurantStatus.OPEN.status}
+                val oa = favorites.filter { it.status ==  SealdRestaurantStatus.AHEAD.status}
+                val c = favorites.filter { it.status ==  SealdRestaurantStatus.CLOSED.status}
+                favorites.clear()
+                favorites = (o + oa + c) as ArrayList<Restaurant>
                 favoritesLessList.sortWith(compareBy { it.sortingValues?.minCost })
                 openedRestaurants.sortWith(compareBy { it.sortingValues?.minCost })
                 closedRestaurants.sortWith(compareBy { it.sortingValues?.minCost })

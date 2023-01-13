@@ -10,7 +10,7 @@ import com.example.ebcom.ApplicationLoader
 import com.example.ebcom.R
 import com.example.ebcom.databinding.ItemRestaurantBinding
 import com.example.ebcom.model.Restaurant
-import com.example.ebcom.model.seald.RestaurantOrderState
+import com.example.ebcom.model.seald.SealdRestaurantStatus
 import com.example.ebcom.utility.TDiffUtilCallback
 import com.example.ebcom.utility.customViews.ToggleImageView
 import com.example.ebcom.utility.extentions.hide
@@ -118,7 +118,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
 
         private fun restaurantOpenClosAheadUiState(model: Restaurant) {
             when(model.status){
-                RestaurantOrderState.OPEN.status -> {
+                SealdRestaurantStatus.OPEN.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
                     binding.closedIv.hide()
                     binding.deliveryCostsContainer.show()
@@ -128,7 +128,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
                     }
                     binding.tvRestaurantOpenOrClosedState.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
-                RestaurantOrderState.CLOSED.status -> {
+                SealdRestaurantStatus.CLOSED.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
                     binding.closedIv.show()
                     binding.deliveryCostsContainer.hide()
@@ -138,7 +138,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
                     }
                     binding.tvRestaurantOpenOrClosedState.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
-                RestaurantOrderState.AHEAD.status -> {
+                SealdRestaurantStatus.AHEAD.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray_very_dark))
                     binding.closedIv.hide()
                     binding.deliveryCostsContainer.show()
@@ -154,9 +154,9 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
 
         private fun restaurantBackgroundColor(model: Restaurant){
             when(model.status){
-                RestaurantOrderState.OPEN.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.green_transparently))
-                RestaurantOrderState.CLOSED.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.red_transparently))
-                RestaurantOrderState.AHEAD.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.gray_transparently))
+                SealdRestaurantStatus.OPEN.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.green_transparently))
+                SealdRestaurantStatus.CLOSED.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.red_transparently))
+                SealdRestaurantStatus.AHEAD.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.gray_transparently))
                 else -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.white_background))
             }
         }

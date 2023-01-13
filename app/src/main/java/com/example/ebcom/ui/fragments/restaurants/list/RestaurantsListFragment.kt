@@ -4,22 +4,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ebcom.R
 import com.example.ebcom.databinding.FragmentRestaurantsListBinding
 import com.example.ebcom.model.Restaurant
-import com.example.ebcom.model.seald.SortValues
+import com.example.ebcom.model.seald.SealdSortValues
 import com.example.ebcom.ui.fragments.restaurants.RestaurantsVM
 import com.example.ebcom.ui.fragments.restaurants.details.RestaurantsDetailsFragment
 import com.example.ebcom.utility.base.BaseFragment
-import com.example.ebcom.utility.extentions.changeStatusBarColor
-import com.example.ebcom.utility.extentions.checkInternetConnection
 import com.example.ebcom.utility.extentions.hide
-import com.example.ebcom.utility.extentions.showToast
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,RestaurantsVM>(), RestaurantAdapter.RestaurantClickEvent {
@@ -45,40 +39,40 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
                 setOnMenuItemClickListener { menuItem ->
                     when(menuItem.itemId){
                         R.id.bestMatch -> {
-                            viewModel.getSortRestaurantsBy(SortValues.BestMatch.sortKey)
-                            binding.btnSortText.text = SortValues.BestMatch.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.BestMatch.sortKey)
+                            binding.btnSortText.text = SealdSortValues.BestMatch.sortKey
                         }
                         R.id.newest -> {
-                            viewModel.getSortRestaurantsBy(SortValues.NEWEST.sortKey)
-                            binding.btnSortText.text = SortValues.NEWEST.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.NEWEST.sortKey)
+                            binding.btnSortText.text = SealdSortValues.NEWEST.sortKey
                         }
                         R.id.ratingAverage -> {
-                            viewModel.getSortRestaurantsBy(SortValues.RatingAverage.sortKey)
-                            binding.btnSortText.text = SortValues.RatingAverage.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.RatingAverage.sortKey)
+                            binding.btnSortText.text = SealdSortValues.RatingAverage.sortKey
                         }
                         R.id.distance -> {
-                            viewModel.getSortRestaurantsBy(SortValues.Distance.sortKey)
-                            binding.btnSortText.text = SortValues.Distance.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.Distance.sortKey)
+                            binding.btnSortText.text = SealdSortValues.Distance.sortKey
                         }
                         R.id.popularity -> {
-                            viewModel.getSortRestaurantsBy(SortValues.POPULARITY.sortKey)
-                            binding.btnSortText.text = SortValues.POPULARITY.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.POPULARITY.sortKey)
+                            binding.btnSortText.text = SealdSortValues.POPULARITY.sortKey
                         }
                         R.id.averageProductPrice -> {
-                            viewModel.getSortRestaurantsBy(SortValues.AverageProductPrice.sortKey)
-                            binding.btnSortText.text = SortValues.AverageProductPrice.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.AverageProductPrice.sortKey)
+                            binding.btnSortText.text = SealdSortValues.AverageProductPrice.sortKey
                         }
                         R.id.deliveryCosts -> {
-                            viewModel.getSortRestaurantsBy(SortValues.DeliveryCosts.sortKey)
-                            binding.btnSortText.text = SortValues.DeliveryCosts.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.DeliveryCosts.sortKey)
+                            binding.btnSortText.text = SealdSortValues.DeliveryCosts.sortKey
                         }
                         R.id.minCost -> {
-                            viewModel.getSortRestaurantsBy(SortValues.MinCost.sortKey)
-                            binding.btnSortText.text = SortValues.MinCost.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.MinCost.sortKey)
+                            binding.btnSortText.text = SealdSortValues.MinCost.sortKey
                         }
                         else -> {
-                            viewModel.getSortRestaurantsBy(SortValues.BestMatch.sortKey)
-                            binding.btnSortText.text = SortValues.BestMatch.sortKey
+                            viewModel.getSortRestaurantsBy(SealdSortValues.BestMatch.sortKey)
+                            binding.btnSortText.text = SealdSortValues.BestMatch.sortKey
                         } // default sorting
                     }
                     return@setOnMenuItemClickListener false
@@ -86,14 +80,14 @@ class RestaurantsListFragment : BaseFragment<FragmentRestaurantsListBinding,Rest
             }
 
             when(binding.btnSortText.text.toString()){
-                SortValues.BestMatch.sortKey -> popup.menu.getItem(0).isChecked = true
-                SortValues.NEWEST.sortKey -> popup.menu.getItem(1).isChecked = true
-                SortValues.RatingAverage.sortKey -> popup.menu.getItem(2).isChecked = true
-                SortValues.Distance.sortKey -> popup.menu.getItem(3).isChecked = true
-                SortValues.POPULARITY.sortKey -> popup.menu.getItem(4).isChecked = true
-                SortValues.AverageProductPrice.sortKey -> popup.menu.getItem(5).isChecked = true
-                SortValues.DeliveryCosts.sortKey -> popup.menu.getItem(6).isChecked = true
-                SortValues.MinCost.sortKey -> popup.menu.getItem(7).isChecked = true
+                SealdSortValues.BestMatch.sortKey -> popup.menu.getItem(0).isChecked = true
+                SealdSortValues.NEWEST.sortKey -> popup.menu.getItem(1).isChecked = true
+                SealdSortValues.RatingAverage.sortKey -> popup.menu.getItem(2).isChecked = true
+                SealdSortValues.Distance.sortKey -> popup.menu.getItem(3).isChecked = true
+                SealdSortValues.POPULARITY.sortKey -> popup.menu.getItem(4).isChecked = true
+                SealdSortValues.AverageProductPrice.sortKey -> popup.menu.getItem(5).isChecked = true
+                SealdSortValues.DeliveryCosts.sortKey -> popup.menu.getItem(6).isChecked = true
+                SealdSortValues.MinCost.sortKey -> popup.menu.getItem(7).isChecked = true
             }
             popup.show()
         }
