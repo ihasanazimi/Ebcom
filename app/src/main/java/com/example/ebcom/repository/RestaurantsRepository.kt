@@ -22,6 +22,6 @@ interface RestaurantsRepository {
 
     fun getOrderAheadRestaurants() : RestaurantsObject
 
-    fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String) : RestaurantsObject
+    suspend fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String) : RestaurantsObject
 
 }

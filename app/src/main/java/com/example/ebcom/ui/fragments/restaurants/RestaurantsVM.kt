@@ -28,7 +28,6 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
         isDone.value = true
         viewModelScope.launch(handler) {
             val res = repository.getAllRestaurantsList()
-            (res.restaurants as ArrayList<Restaurant>).sortBy { it.sortingValues?.bestMatch }
             _restaurants.value = res
             isDone.value = false
         }
@@ -44,7 +43,7 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
         }
     }
 
-    fun getSortFavoritesRestaurantsBy(sortType : String){
+    suspend fun getSortFavoritesRestaurantsBy(sortType : String){
         isDone.value = true
         val res = repository.getFavoritesListRestaurants()
         val sortedList = repository.sortRestaurantsBy(res,sortType)

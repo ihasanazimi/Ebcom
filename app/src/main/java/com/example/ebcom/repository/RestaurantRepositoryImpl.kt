@@ -49,11 +49,14 @@ class RestaurantRepositoryImpl(
         return localDataSource.getOrderAheadRestaurants()
     }
 
-    override fun sortRestaurantsBy(
-        restaurants: RestaurantsObject,
-        sortType: String
-    ): RestaurantsObject {
-        return localDataSource.sortRestaurantsBy(restaurants, sortType)
+    override suspend fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String): RestaurantsObject {
+        var resObj : RestaurantsObject ? = null
+        val job = GlobalScope.launch {
+            resObj = if (localDataSource.getRestaurantsList().restaurants.isNotEmpty()) localDataSource.sortRestaurantsBy(restaurants, sortType)
+            else remoteDataSource.getRestaurantsList()
+        }
+        job.join()
+        return localDataSource.sortRestaurantsBy(resObj!!, sortType)
     }
 
 

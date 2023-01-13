@@ -28,7 +28,7 @@ data class SortingValues(
     fun distanceByKM() = "Distance : " + String.format("%.1f", distance / 1000F)+"KM"
     fun ratingAverageFlt() = ratingAverage.toFloat()
     fun popularityStr() = "(${popularity.toInt()})"
-    fun deliveryCostsStr() = "$deliveryCosts$"
+    fun deliveryCostsStr() = if (deliveryCosts==0) "Free" else "$deliveryCosts$"
     fun newest() = "$newest"
     fun bestMatch() = "${bestMatch.toInt()}"
     fun minCost() = "$minCost"
