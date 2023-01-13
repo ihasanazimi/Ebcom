@@ -9,7 +9,7 @@ import com.example.ebcom.model.seald.SortValues
 import com.example.ebcom.repository.restaurant_datasource.RestaurantDataSource
 import kotlin.math.log
 
-class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource {
+class RestaurantLocalDataSource(private val db: RoomDB) : RestaurantDataSource {
 
     override suspend fun getRestaurantsList(): RestaurantsObject {
         val objList = db.restaurantDao().allRestaurants()
@@ -21,7 +21,7 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
     }
 
     override fun addAllRestaurants(list: RestaurantsObject) {
-        list.restaurants.forEach{
+        list.restaurants.forEach {
             db.restaurantDao().insertRestaurant(it)
         }
     }
@@ -40,31 +40,40 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
     }
 
     override fun getOpenedRestaurants(): RestaurantsObject {
-        val res = db.restaurantDao().allRestaurants().filter { it.status == RestaurantOrderState.OPEN.status }
+        val res = db.restaurantDao().allRestaurants()
+            .filter { it.status == RestaurantOrderState.OPEN.status }
         return RestaurantsObject(res)
     }
 
     override fun getOrderAheadRestaurants(): RestaurantsObject {
-        val res = db.restaurantDao().allRestaurants().filter { it.status == RestaurantOrderState.AHEAD.status }
+        val res = db.restaurantDao().allRestaurants()
+            .filter { it.status == RestaurantOrderState.AHEAD.status }
         return RestaurantsObject(res)
     }
 
-    override fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String): RestaurantsObject {
+    override fun sortRestaurantsBy(
+        restaurants: RestaurantsObject,
+        sortType: String
+    ): RestaurantsObject {
 
-        val favorites = restaurants.restaurants.filter { it.favorite ==1 } as ArrayList<Restaurant>
-        val favoritesLessList = restaurants.restaurants.filter { it.favorite == 0 } as ArrayList<Restaurant>
-        val openedRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.OPEN.status } as ArrayList<Restaurant>
-        val closedRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.CLOSED.status } as ArrayList<Restaurant>
-        val aheadRestaurants = favoritesLessList.filter { it.status == RestaurantOrderState.AHEAD.status } as ArrayList<Restaurant>
-        val numbers = arrayOf(2,8,7,9,4,3,1,10)
+        val favorites = restaurants.restaurants.filter { it.favorite == 1 } as ArrayList<Restaurant>
+        val favoritesLessList =
+            restaurants.restaurants.filter { it.favorite == 0 } as ArrayList<Restaurant>
+        val openedRestaurants =
+            favoritesLessList.filter { it.status == RestaurantOrderState.OPEN.status } as ArrayList<Restaurant>
+        val closedRestaurants =
+            favoritesLessList.filter { it.status == RestaurantOrderState.CLOSED.status } as ArrayList<Restaurant>
+        val aheadRestaurants =
+            favoritesLessList.filter { it.status == RestaurantOrderState.AHEAD.status } as ArrayList<Restaurant>
+        val numbers = arrayOf(2, 8, 7, 9, 4, 3, 1, 10)
 
         when (sortType) {
             SortValues.BestMatch.sortKey -> {
                 favorites.sortBy { it.sortingValues?.bestMatch }
-                favoritesLessList.sortWith(compareBy{it.sortingValues?.bestMatch})
-                openedRestaurants.sortWith(compareBy{it.sortingValues?.bestMatch})
-                closedRestaurants.sortWith(compareBy{it.sortingValues?.bestMatch})
-                aheadRestaurants.sortWith(compareBy{it.sortingValues?.bestMatch})
+                favoritesLessList.sortWith(compareBy { it.sortingValues?.bestMatch })
+                openedRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
+                closedRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
+                aheadRestaurants.sortWith(compareBy { it.sortingValues?.bestMatch })
             }
             SortValues.NEWEST.sortKey -> {
                 favorites.sortBy { it.sortingValues?.newest }
@@ -102,11 +111,11 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
                 aheadRestaurants.sortBy { it.sortingValues?.averageProductPrice }
             }
             SortValues.DeliveryCosts.sortKey -> {
-                favorites.sortWith(compareBy{it.sortingValues?.deliveryCosts})
-                favoritesLessList.sortWith(compareBy{it.sortingValues?.deliveryCosts})
-                openedRestaurants.sortWith(compareBy{it.sortingValues?.deliveryCosts})
-                closedRestaurants.sortWith(compareBy{it.sortingValues?.deliveryCosts})
-                aheadRestaurants.sortWith(compareBy{it.sortingValues?.deliveryCosts})
+                favorites.sortWith(compareBy { it.sortingValues?.deliveryCosts })
+                favoritesLessList.sortWith(compareBy { it.sortingValues?.deliveryCosts })
+                openedRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
+                closedRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
+                aheadRestaurants.sortWith(compareBy { it.sortingValues?.deliveryCosts })
                 numbers.sortBy { it }
             }
             SortValues.MinCost.sortKey -> {
@@ -116,35 +125,75 @@ class RestaurantLocalDataSource(private val db : RoomDB) : RestaurantDataSource 
                 closedRestaurants.sortBy { it.sortingValues?.minCost }
                 aheadRestaurants.sortBy { it.sortingValues?.minCost }
             }
-            else-> {  }
+            else -> {}
         }
 
         val finalList = favorites + openedRestaurants + aheadRestaurants + closedRestaurants
-        when(sortType) {
+        when (sortType) {
             SortValues.BestMatch.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy bestMatch : " + rest.sortingValues?.bestMatch) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy bestMatch : " + rest.sortingValues?.bestMatch
+                    )
+                }
             }
             SortValues.NEWEST.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy newest : " + rest.sortingValues?.newest) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy newest : " + rest.sortingValues?.newest
+                    )
+                }
             }
             SortValues.RatingAverage.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy ratingAverage : " + rest.sortingValues?.ratingAverage) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy ratingAverage : " + rest.sortingValues?.ratingAverage
+                    )
+                }
             }
             SortValues.Distance.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy distance : " + rest.sortingValues?.distance) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy distance : " + rest.sortingValues?.distance
+                    )
+                }
             }
             SortValues.POPULARITY.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy popularity : " + rest.sortingValues?.popularity) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy popularity : " + rest.sortingValues?.popularity
+                    )
+                }
             }
             SortValues.AverageProductPrice.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy averageProductPrice : " + rest.sortingValues?.averageProductPrice) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy averageProductPrice : " + rest.sortingValues?.averageProductPrice
+                    )
+                }
             }
             SortValues.DeliveryCosts.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy deliveryCosts : " + rest.sortingValues?.deliveryCosts) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy deliveryCosts : " + rest.sortingValues?.deliveryCosts
+                    )
+                }
                 numbers.forEach { Log.i("hsn", it.toString()) }
             }
             SortValues.MinCost.sortKey -> {
-                finalList.forEach { rest -> Log.i("hsn", "sortRestaurantsBy minCost : " + rest.sortingValues?.minCost) }
+                finalList.forEach { rest ->
+                    Log.i(
+                        "hsn",
+                        "sortRestaurantsBy minCost : " + rest.sortingValues?.minCost
+                    )
+                }
             }
         }
         return RestaurantsObject(finalList)

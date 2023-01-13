@@ -6,7 +6,7 @@ import com.example.ebcom.repository.restaurant_datasource.RestaurantDataSource
 import com.example.ebcom.services.http.ApiService
 import kotlinx.coroutines.DelicateCoroutinesApi
 
-class RestaurantRemoteDataSource(private val api : ApiService) : RestaurantDataSource {
+class RestaurantRemoteDataSource(private val api: ApiService) : RestaurantDataSource {
 
     override suspend fun getRestaurantsList(): RestaurantsObject {
         return api.getRestaurant()
@@ -40,7 +40,10 @@ class RestaurantRemoteDataSource(private val api : ApiService) : RestaurantDataS
         TODO("Not yet implemented")
     }
 
-    override fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String): RestaurantsObject {
+    override fun sortRestaurantsBy(
+        restaurants: RestaurantsObject,
+        sortType: String
+    ): RestaurantsObject {
         TODO("Not yet implemented")
     }
 

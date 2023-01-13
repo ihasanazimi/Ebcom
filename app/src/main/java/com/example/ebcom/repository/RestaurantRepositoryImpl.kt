@@ -30,7 +30,7 @@ class RestaurantRepositoryImpl(
     }
 
     override fun updateFavorites(restaurant: Restaurant) {
-            localDataSource.updateFavorites(restaurant)
+        localDataSource.updateFavorites(restaurant)
     }
 
     override fun getFavoritesListRestaurants(): RestaurantsObject {
@@ -45,8 +45,11 @@ class RestaurantRepositoryImpl(
         return localDataSource.getOrderAheadRestaurants()
     }
 
-    override fun sortRestaurantsBy(restaurants: RestaurantsObject, sortType: String): RestaurantsObject {
-        return localDataSource.sortRestaurantsBy(restaurants,sortType)
+    override fun sortRestaurantsBy(
+        restaurants: RestaurantsObject,
+        sortType: String
+    ): RestaurantsObject {
+        return localDataSource.sortRestaurantsBy(restaurants, sortType)
     }
 
 
