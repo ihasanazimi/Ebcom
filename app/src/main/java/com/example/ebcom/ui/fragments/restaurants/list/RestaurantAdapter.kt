@@ -133,14 +133,26 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
                 RestaurantOrderState.OPEN.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
                     binding.closedIv.hide()
+                    binding.restaurantMessage.apply {
+                        show()
+                        text = "We are ready to process your order."
+                    }
                 }
                 RestaurantOrderState.CLOSED.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
                     binding.closedIv.show()
+                    binding.restaurantMessage.apply {
+                        show()
+                        text = "We are sorry that our restaurant is closed."
+                    }
                 }
                 RestaurantOrderState.AHEAD.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
                     binding.closedIv.hide()
+                    binding.restaurantMessage.apply {
+                        show()
+                        text = "You can order in advance."
+                    }
                 }
                 else -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
             }
