@@ -98,7 +98,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
     inner class PostViewHolder(val binding: ItemRestaurantBinding) : RecyclerView.ViewHolder(binding.root){
 
         val fakeImages = arrayListOf<Int>(
-            R.drawable.p2,
+            R.drawable.p10,
             R.drawable.p3,
             R.drawable.p4,
             R.drawable.p5,
@@ -114,6 +114,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
             binding.data = model
             statusTextColor(model)
             favoriteStateChanging(model)
+            changeCardBackgroundColor(model)
 
             // for beautifully
             Glide.with(binding.ivRestaurantCover.context)
@@ -127,10 +128,19 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
 
         private fun statusTextColor(model: Restaurant) {
             when(model.status){
-                RestaurantOrderState.OPEN.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.teal_200))
+                RestaurantOrderState.OPEN.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
                 RestaurantOrderState.CLOSED.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
                 RestaurantOrderState.AHEAD.status -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
                 else -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
+            }
+        }
+
+        private fun changeCardBackgroundColor(model: Restaurant){
+            when(model.status){
+                RestaurantOrderState.OPEN.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.green_transparently))
+                RestaurantOrderState.CLOSED.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.red_transparently))
+                RestaurantOrderState.AHEAD.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.gray_transparently))
+                else -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.white_background))
             }
         }
 

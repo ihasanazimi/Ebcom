@@ -28,6 +28,7 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
         isDone.value = true
         viewModelScope.launch(handler) {
             val res = repository.getAllRestaurantsList()
+            (res.restaurants as ArrayList<Restaurant>).sortBy { it.sortingValues?.bestMatch }
             _restaurants.value = res
             isDone.value = false
         }

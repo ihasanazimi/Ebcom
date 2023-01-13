@@ -7,8 +7,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class SortingValues(
     @PrimaryKey
-    @ColumnInfo(name = "id")
-    val id : Long = 0 ,
     @ColumnInfo(name = "bestMatch")
     val bestMatch: Double = 0.0,
     @ColumnInfo(name = "newest")

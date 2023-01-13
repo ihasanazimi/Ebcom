@@ -10,12 +10,13 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewBg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/space_4"
+        app:cardCornerRadius="@dimen/space_8"
         android:layout_marginHorizontal="@dimen/space_16"
         android:layout_marginVertical="@dimen/space_8"
-        app:cardElevation="@dimen/space_2">
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,37 +56,40 @@
                         android:orientation="vertical"
                         android:paddingVertical="@dimen/space_8">
 
-                        <androidx.appcompat.widget.LinearLayoutCompat
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/tv_restaurant_name"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical|start"
-                                android:maxLines="1"
+                                android:maxLines="2"
                                 android:paddingHorizontal="@dimen/space_2"
                                 android:text="@{data.name}"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/textSize_14"
                                 android:textStyle="bold"
+                                android:layout_alignParentStart="true"
+                                android:layout_toStartOf="@id/tv_RestaurantOpenOrClosedState"
                                 tools:text="Restaurant Named" />
 
                             <TextView
                                 android:id="@+id/tv_RestaurantOpenOrClosedState"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_marginHorizontal="@dimen/space_8"
                                 android:text="@{data.statusByParenteral}"
                                 android:paddingHorizontal="@dimen/space_4"
                                 android:gravity="center"
+                                android:layout_alignParentEnd="true"
                                 android:textStyle="normal"
                                 android:textSize="@dimen/textSize_12"
                                 tools:text="(Open)" />
 
-                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        </RelativeLayout>
 
 
 
@@ -101,6 +105,7 @@
                                 android:isIndicator="true"
                                 android:focusable="false"
                                 android:clickable="false"
+                                android:theme="@style/RatingBar"
                                 android:rating="@{data.sortingValues.ratingAverageFlt}"
                                 android:numStars="5" />
 

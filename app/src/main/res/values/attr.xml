@@ -14,4 +14,10 @@
         <attr name="riv_cornerSize" format="dimension|reference" />
     </declare-styleable>
 
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/gray_very_dark</item>
+        <item name="colorControlActivated">@color/black</item>
+    </style>
+
 </resources>
