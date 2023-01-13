@@ -85,7 +85,7 @@
                 android:layout_gravity="bottom|start"
                 android:layout_margin="@dimen/space_8"
                 android:drawablePadding="@dimen/space_8"
-                android:gravity="center"
+                android:gravity="center_vertical|start"
                 android:text="You can order in advance ."
                 android:textColor="@color/white"
                 android:textSize="@dimen/textSize_12"
