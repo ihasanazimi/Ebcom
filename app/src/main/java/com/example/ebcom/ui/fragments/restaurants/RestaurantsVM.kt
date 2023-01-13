@@ -95,7 +95,7 @@ class RestaurantsVM(private val repository : RestaurantRepositoryImpl) : BaseVie
         isDone.value = false
     }
 
-    private fun updateOnLiveData(restaurant: Restaurant) {
+    fun updateOnLiveData(restaurant: Restaurant) {
         val temps = _restaurants.value?.restaurants?.toMutableList()
         val targetTemp = temps?.find { it.name == restaurant.name }
         val targetIndex = temps?.indexOf(targetTemp)

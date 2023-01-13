@@ -26,19 +26,21 @@ class ApplicationLoader : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // init config for app
         localizedContext(this)
         context = this.applicationContext
         applicationHandler = Handler(this.mainLooper)
         ThemeUtils.changeTheme(false)
         RoomDB.getDataBase(this@ApplicationLoader)
 
-        // Koin
+        // 1- koin (Dependency Injection)
         val modules = module {
             single { apiService }
             single { RoomDB.getDataBase(this@ApplicationLoader) }
             single { RestaurantRepositoryImpl(RestaurantRemoteDataSource(get()), RestaurantLocalDataSource(get())) }
             viewModel<RestaurantsVM> { RestaurantsVM(get()) }
         }
+        // 2- then -> start koin
         startKoin {
             androidContext(this@ApplicationLoader)
             modules(modules)

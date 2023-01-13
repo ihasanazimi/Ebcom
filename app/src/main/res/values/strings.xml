@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ebcom</string>
     <string name="this_is_test_description">this is test description</string>
+    <string name="close_message">We are sorry that our restaurant is closed.</string>
+    <string name="order_ahead_message">You can order in advance.</string>
+    <string name="open_message">We are ready to process your order.</string>
 </resources>

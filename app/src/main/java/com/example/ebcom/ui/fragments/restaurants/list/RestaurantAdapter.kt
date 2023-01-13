@@ -15,7 +15,6 @@ import com.example.ebcom.utility.TDiffUtilCallback
 import com.example.ebcom.utility.customViews.ToggleImageView
 import com.example.ebcom.utility.extentions.hide
 import com.example.ebcom.utility.extentions.show
-import kotlin.random.Random
 
 class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adapter<RestaurantAdapter.PostViewHolder>() {
 
@@ -99,28 +98,16 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
 
     inner class PostViewHolder(val binding: ItemRestaurantBinding) : RecyclerView.ViewHolder(binding.root){
 
-        val fakeImages = arrayListOf<Int>(
-            R.drawable.p10,
-            R.drawable.p3,
-            R.drawable.p4,
-            R.drawable.p5,
-            R.drawable.p6,
-            R.drawable.p8,
-            R.drawable.p9,
-            R.drawable.p10,
-            R.drawable.p11,
-        )
-
         fun bind(model : Restaurant){
 
             binding.data = model
-            statusTextColor(model)
-            favoriteStateChanging(model)
-            changeCardBackgroundColor(model)
+            restaurantOpenClosAheadUiState(model)
+            favoriteIconState(model)
+            restaurantBackgroundColor(model)
 
             // for beautifully
             Glide.with(binding.ivRestaurantCover.context)
-                .load(binding.ivRestaurantCover.context.getDrawable(fakeImages[Random.nextInt(0,fakeImages.size-1)]))
+                .load(binding.ivRestaurantCover.context.getDrawable(R.drawable.p3))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .placeholder(R.drawable.ic_baseline_downloading_24)
                 .into(binding.ivRestaurantCover)
@@ -128,37 +115,43 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
         }
 
 
-        private fun statusTextColor(model: Restaurant) {
+        private fun restaurantOpenClosAheadUiState(model: Restaurant) {
             when(model.status){
                 RestaurantOrderState.OPEN.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.green))
                     binding.closedIv.hide()
+                    binding.deliveryCostsContainer.show()
                     binding.restaurantMessage.apply {
                         show()
-                        text = "We are ready to process your order."
+                        text = binding.root.context.getString(R.string.open_message)
                     }
+                    binding.tvRestaurantOpenOrClosedState.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
                 RestaurantOrderState.CLOSED.status -> {
                     binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.red))
                     binding.closedIv.show()
+                    binding.deliveryCostsContainer.hide()
                     binding.restaurantMessage.apply {
                         show()
-                        text = "We are sorry that our restaurant is closed."
+                        text = binding.root.context.getString(R.string.close_message)
                     }
+                    binding.tvRestaurantOpenOrClosedState.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                 }
                 RestaurantOrderState.AHEAD.status -> {
-                    binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
+                    binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray_very_dark))
                     binding.closedIv.hide()
+                    binding.deliveryCostsContainer.show()
                     binding.restaurantMessage.apply {
                         show()
-                        text = "You can order in advance."
+                        text = binding.root.context.getString(R.string.order_ahead_message)
                     }
+                    binding.tvRestaurantOpenOrClosedState.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_access_time_24, 0, 0, 0)
                 }
                 else -> binding.tvRestaurantOpenOrClosedState.setTextColor(binding.root.context.resources.getColor(R.color.gray))
             }
         }
 
-        private fun changeCardBackgroundColor(model: Restaurant){
+        private fun restaurantBackgroundColor(model: Restaurant){
             when(model.status){
                 RestaurantOrderState.OPEN.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.green_transparently))
                 RestaurantOrderState.CLOSED.status -> binding.cardViewBg.setCardBackgroundColor(binding.root.context.resources.getColor(R.color.red_transparently))
@@ -167,7 +160,7 @@ class RestaurantAdapter(val callBack : RestaurantClickEvent) : RecyclerView.Adap
             }
         }
 
-        private fun favoriteStateChanging(restaurant: Restaurant){
+        private fun favoriteIconState(restaurant: Restaurant){
             when (restaurant.favorite){
                 1 -> binding.favoriteToggleBtn.setChecked()
                 0 -> binding.favoriteToggleBtn.setUnchecked()

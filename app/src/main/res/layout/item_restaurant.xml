@@ -69,6 +69,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_4"
                 android:paddingTop="@dimen/space_8">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -93,6 +94,7 @@
                         android:paddingVertical="@dimen/space_8">
 
                         <RelativeLayout
+                            android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -119,6 +121,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="@dimen/space_8"
                                 android:gravity="center"
+                                android:drawablePadding="@dimen/space_4"
                                 android:paddingHorizontal="@dimen/space_4"
                                 android:text="@{data.statusByParenteral}"
                                 android:textSize="@dimen/textSize_12"
@@ -178,62 +181,53 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/space_4">
-
                 <com.example.ebcom.utility.customViews.ToggleImageView
                     android:id="@+id/favoriteToggleBtn"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:layout_gravity="end|center_vertical"
+                    android:layout_gravity="end|bottom"
                     android:layout_marginHorizontal="@dimen/space_8"
                     android:checked="false"
                     android:padding="@dimen/space_8"
                     app:src_checked="@drawable/ic_like_24"
                     app:src_unchecked="@drawable/ic_like_border_24" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|start"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="@dimen/space_4"
-                        android:drawablePadding="@dimen/space_4"
-                        android:gravity="start|center_vertical"
-                        android:text="delivery Costs : "
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/textSize_12"
-                        android:textStyle="bold"
-                        app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
-
-                    <TextView
-                        android:id="@+id/tv_deliveryCosts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|start"
-                        android:layout_marginBottom="@dimen/space_4"
-                        android:gravity="start|center_vertical"
-                        android:text="@{data.sortingValues.deliveryCostsStr}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textSize_12"
-                        android:textStyle="bold"
-                        tools:text="150$" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
             </FrameLayout>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/deliveryCostsContainer"
+                android:layout_marginBottom="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginStart="12dp"
+                    android:drawablePadding="@dimen/space_4"
+                    android:gravity="start|center_vertical"
+                    android:text="delivery Costs : "
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/textSize_12"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
+
+                <TextView
+                    android:id="@+id/tv_deliveryCosts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|start"
+                    android:gravity="start|center_vertical"
+                    android:text="@{data.sortingValues.deliveryCostsStr}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSize_12"
+                    android:textStyle="bold"
+                    tools:text="150$" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </LinearLayout>
 
