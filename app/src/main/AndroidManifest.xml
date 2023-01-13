@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Ebcom"
         tools:targetApi="31">
         <activity
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
