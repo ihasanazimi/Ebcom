@@ -11,7 +11,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/white"
+            android:background="@color/yellow"
             app:liftOnScroll="true">
 
             <FrameLayout
@@ -30,7 +30,7 @@
                         android:fontFamily="sans-serif-light"
                         android:paddingHorizontal="@dimen/space_8"
                         android:text="EBCOM Stores"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/textSize_18" />
                 </androidx.appcompat.widget.Toolbar>
 
@@ -74,6 +74,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
+            android:paddingTop="@dimen/space_16"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:orientation="vertical"

@@ -171,6 +171,7 @@
                             android:gravity="center_vertical|start"
                             android:paddingVertical="@dimen/space_2"
                             android:singleLine="true"
+                            android:textColor="@color/gray_very_dark"
                             android:text="@{data.sortingValues.distanceByKM}"
                             android:textSize="@dimen/textSize_12"
                             android:textStyle="normal"
@@ -210,9 +211,9 @@
                     android:drawablePadding="@dimen/space_4"
                     android:gravity="start|center_vertical"
                     android:text="delivery Costs : "
-                    android:textColor="@color/gray"
+                    android:textColor="@color/gray_very_dark"
                     android:textSize="@dimen/textSize_12"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     app:drawableStartCompat="@drawable/ic_baseline_delivery_dining_24" />
 
                 <TextView

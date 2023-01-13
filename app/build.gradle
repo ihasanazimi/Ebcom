@@ -95,12 +95,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-
-    // RxJava  // RxAndroid
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-
     // Retrofit and Converts Factories
     implementation 'com.squareup.retrofit2:retrofit:2.9.0' // okHttp
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1' // GSON Converter

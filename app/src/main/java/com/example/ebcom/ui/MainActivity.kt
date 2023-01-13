@@ -10,6 +10,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int get() = R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        changeStatusBarColor(window,R.color.gray_dark)
+        changeStatusBarColor(window,R.color.yellow)
     }
 }

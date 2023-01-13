@@ -2,19 +2,23 @@ package com.example.ebcom.repository
 
 import com.example.ebcom.model.Restaurant
 import com.example.ebcom.model.RestaurantsObject
+import com.example.ebcom.model.seald.SortValues
 import com.example.ebcom.repository.restaurant_datasource.RestaurantDataSource
 import com.example.ebcom.repository.restaurant_datasource.local.RestaurantLocalDataSource
+import com.example.ebcom.repository.restaurant_datasource.remote.RestaurantRemoteDataSource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class RestaurantRepositoryImpl(
-    private val remoteDataSource: RestaurantDataSource,
+    private val remoteDataSource: RestaurantRemoteDataSource,
     private val localDataSource: RestaurantLocalDataSource
 ) : RestaurantsRepository {
 
     override suspend fun getAllRestaurantsList(): RestaurantsObject {
-        if (localDataSource.getRestaurantsList().restaurants.isNotEmpty()) return localDataSource.getRestaurantsList()
-        return remoteDataSource.getRestaurantsList()
+        if (localDataSource.getRestaurantsList().restaurants.isNotEmpty())
+            return localDataSource.sortRestaurantsBy(localDataSource.getRestaurantsList(),SortValues.BestMatch.sortKey)
+        val remoteResultObject = remoteDataSource.getRestaurantsList()
+        return remoteDataSource.sortRestaurantsBy(remoteResultObject,SortValues.BestMatch.sortKey)
     }
 
     override fun addToFavorite(restaurant: Restaurant) {
