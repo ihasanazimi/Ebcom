@@ -43,3 +43,4 @@ They can save the list of their favorite restaurants in their device and they ca
 ## License
 Some of the used libraries are released under different licenses.
 This application is released under EBCOM.Hsn (see [LICENSE](LICENSE)).
+Developed By Hasan Azimi (email : ihasan.azimi@gmail.com)
