@@ -14,10 +14,10 @@ class RestaurantRepositoryImpl(
 ) : RestaurantsRepository {
 
     override suspend fun getAllRestaurantsList(): RestaurantsObject {
-        if (localDataSource.getRestaurantsList().restaurants.isNotEmpty())
-            return localDataSource.sortRestaurantsBy(localDataSource.getRestaurantsList(),SealdSortValues.BestMatch.sortKey)
-        val remoteResultObject = remoteDataSource.getRestaurantsList()
-        return remoteDataSource.sortRestaurantsBy(remoteResultObject,SealdSortValues.BestMatch.sortKey)
+        val localRestaurants = localDataSource.getRestaurantsList()
+        if (localRestaurants.restaurants.isNotEmpty())
+            return localDataSource.sortRestaurantsBy(localRestaurants,SealdSortValues.BestMatch.sortKey)
+        return remoteDataSource.sortRestaurantsBy(remoteDataSource.getRestaurantsList(),SealdSortValues.BestMatch.sortKey)
     }
 
     override fun addToFavorite(restaurant: Restaurant) {
