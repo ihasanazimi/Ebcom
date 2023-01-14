@@ -41,6 +41,8 @@ They can order from open restaurants or they can register their order and receiv
 They can save the list of their favorite restaurants in their device and they can also see more details and specifications of those restaurants on another page and in general meet people's needs regarding food orders and snacks. Fix it online.
 
 ## License
-Some of the used libraries are released under different licenses.
-This application is released under EBCOM.Hsn (see [LICENSE](LICENSE)).
+Some of the used libraries are released under different licenses. 
+
+This application is released under EBCOM.Hsn (see [LICENSE](LICENSE)). 
+
 Developed By Hasan Azimi (email : ihasan.azimi@gmail.com)
