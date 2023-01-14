@@ -5,9 +5,9 @@ import com.example.ebcom.model.RestaurantsObject
 import com.example.ebcom.model.seald.SealdRestaurantStatus
 import com.example.ebcom.model.seald.SealdSortValues
 import com.example.ebcom.repository.restaurant_datasource.RestaurantDataSource
-import com.example.ebcom.services.http.ApiService
+import com.example.ebcom.services.http.Api
 
-class RestaurantRemoteDataSource(private val api: ApiService) : RestaurantDataSource {
+class RestaurantRemoteDataSource(private val api: Api) : RestaurantDataSource {
 
     override suspend fun getRestaurantsList(): RestaurantsObject {
         return api.getRestaurant()

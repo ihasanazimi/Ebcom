@@ -7,7 +7,7 @@ import com.example.ebcom.db.RoomDB
 import com.example.ebcom.repository.RestaurantRepositoryImpl
 import com.example.ebcom.repository.restaurant_datasource.local.RestaurantLocalDataSource
 import com.example.ebcom.repository.restaurant_datasource.remote.RestaurantRemoteDataSource
-import com.example.ebcom.services.http.apiService
+import com.example.ebcom.services.http.ApiService
 import com.example.ebcom.ui.fragments.restaurants.RestaurantsVM
 import com.example.ebcom.utility.util.ThemeUtils
 import com.example.ebcom.utility.util.localizedContext
@@ -31,13 +31,12 @@ class ApplicationLoader : Application() {
         context = this.applicationContext
         applicationHandler = Handler(this.mainLooper)
         ThemeUtils.changeTheme(false)
-        RoomDB.getDataBase(this@ApplicationLoader)
 
         // 1- koin (Dependency Injection)
         val modules = module {
-            single { apiService }
+            single { ApiService().api }
             single { RoomDB.getDataBase(this@ApplicationLoader) }
-            single { RestaurantRepositoryImpl(RestaurantRemoteDataSource(get()), RestaurantLocalDataSource(get())) }
+            factory { RestaurantRepositoryImpl(RestaurantRemoteDataSource(get()), RestaurantLocalDataSource(get())) }
             viewModel<RestaurantsVM> { RestaurantsVM(get()) }
         }
         // 2- then -> start koin
