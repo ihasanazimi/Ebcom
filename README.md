@@ -33,9 +33,6 @@ The android app lets you:
 ## Screen
 
 https://user-images.githubusercontent.com/65872053/212748792-31bdfab4-8158-499e-b28e-9f9bfd243052.mp4
-![Screenshot_20230116_205115_ebcom](https://user-images.githubusercontent.com/65872053/212748938-c4d91986-dd56-4882-8980-96fed9160e24.jpg)
-![Screenshot_20230116_205128_ebcom](https://user-images.githubusercontent.com/65872053/212748996-906358ed-5b14-4a57-b93e-bb813bd0b1bb.jpg)
-![Screenshot_20230116_205002_ebcom](https://user-images.githubusercontent.com/65872053/212749040-e93d88ea-ebdb-487e-a425-5c7356cabcf2.jpg)
 
 ## Permissions
 
