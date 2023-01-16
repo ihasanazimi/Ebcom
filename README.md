@@ -1,4 +1,4 @@
-# Ebcom - Restaurant App
+# Ebcom.Task - Restaurant App
 
 ## About Application
 
@@ -13,7 +13,6 @@ and the other shows the details of that restaurant.
 
 The android app lets you:
 
-- Display a list of restaurants images android information around the user's location.
 - It supports Android 6 and above.
 - Completely ad-free.
 - Possibility to cache images locally for offline reading.
@@ -31,9 +30,12 @@ The android app lets you:
 - User Retrofit Lib And Gson Lib / Gson Converter
 - Use Koin (Dependency Injection)
 
-## Screen Record
+## Screen
 
-https://user-images.githubusercontent.com/65872053/212467217-67f127f6-c797-41e3-92b5-3af5f264d9fd.mp4
+https://user-images.githubusercontent.com/65872053/212748792-31bdfab4-8158-499e-b28e-9f9bfd243052.mp4
+![Screenshot_20230116_205115_ebcom](https://user-images.githubusercontent.com/65872053/212748938-c4d91986-dd56-4882-8980-96fed9160e24.jpg)
+![Screenshot_20230116_205128_ebcom](https://user-images.githubusercontent.com/65872053/212748996-906358ed-5b14-4a57-b93e-bb813bd0b1bb.jpg)
+![Screenshot_20230116_205002_ebcom](https://user-images.githubusercontent.com/65872053/212749040-e93d88ea-ebdb-487e-a425-5c7356cabcf2.jpg)
 
 ## Permissions
 
